@@ -26,7 +26,6 @@ namespace FluentBuilder.Model.Search
             _stepChecker.AssertCalledAfter(nameof(WithParameters), HasNoResult);
             _stepChecker.AssertCalledOnce (nameof(WithParameters), Result.Parameters.HasValue);
             Result.Parameters = parameters;
-            ArgumentChecker.IsNotNull(Result.Parameters, nameof(Result.Parameters));
             return this;
         }
 

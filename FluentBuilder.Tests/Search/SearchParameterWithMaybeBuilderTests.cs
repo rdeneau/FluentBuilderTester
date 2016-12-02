@@ -10,7 +10,7 @@ namespace FluentBuilder.Tests.Search
     [Trait("UnitTests", "")]
     public class SearchParameterWithMaybeBuilderTests
     {
-        #region Data
+        #region Classes and Data
 
         public class FakeParameters
         {

@@ -85,16 +85,27 @@
       <DependentUpon>ArgumentChecker.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\ChainedItem.cs" />
+    <Compile Include="Common\FnUtils.cs" />
     <Compile Include="Common\JetBrains.Annotations.cs" />
     <Compile Include="Common\Maybe.cs" />
     <Compile Include="Common\RangeKeyedCollection.cs" />
     <Compile Include="Common\StepChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\ISearchParameter.cs" />
+    <Compile Include="Search\ISearchParameterBuilderAfterBegin.cs" />
+    <Compile Include="Search\ISearchParameterBuilderAfterOrder.cs" />
+    <Compile Include="Search\ISearchParameterBuilderAfterParameters.cs" />
+    <Compile Include="Search\ISearchParameterBuilderAfterPagination.cs" />
+    <Compile Include="Search\ISearchParameterBuilderBegin.cs" />
+    <Compile Include="Search\ISearchParameterWithPagination.cs" />
+    <Compile Include="Search\ISearchParameterWithOrder.cs" />
+    <Compile Include="Search\ISearchParameterWithParameters.cs" />
     <Compile Include="Search\OrderParameterSet.cs" />
     <Compile Include="Search\OrderParameter`1.cs" />
     <Compile Include="Search\OrderParameter.cs" />
     <Compile Include="Search\PaginationParameter.cs" />
     <Compile Include="Search\SearchParameter.cs" />
+    <Compile Include="Search\SearchParameterBuilder.cs" />
     <Compile Include="Search\SearchParameterWithMaybeBuilder.cs" />
     <Compile Include="Search\SearchParameterWithMaybe.cs" />
   </ItemGroup>
