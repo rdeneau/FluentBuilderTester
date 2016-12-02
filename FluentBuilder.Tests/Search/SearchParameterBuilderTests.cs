@@ -132,6 +132,7 @@ namespace FluentBuilder.Tests.Search
         #region Test WithParameters
 
         [Fact]
+        public void WithParameters_Builder_Result_Can_Call_Build_And_WithOrder_Only()
         {
             // Arrange
             var builder = CreateBuilder();
@@ -168,6 +169,7 @@ namespace FluentBuilder.Tests.Search
         #region Test WithOrder
 
         [Fact]
+        public void WithOrder_Builder_Result_Can_Call_Build_And_WithPagination_Only()
         {
             // Arrange
             var builder = CreateBuilder();
