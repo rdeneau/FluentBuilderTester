@@ -21,7 +21,7 @@
 
         public static ChainedItem<TItem> CreateFirst<TItem>(TItem current) where TItem : class
         {
-            return new ChainedItem<TItem>(current, null);
+            return new ChainedItem<TItem>(current, new Maybe<TItem>());
         }
     }
 }

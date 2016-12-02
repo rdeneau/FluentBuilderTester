@@ -1,12 +1,20 @@
 ﻿namespace FluentBuilder.Model.Search
 {
     public class SearchParameterBuilder       <TOrder, TPagination, TParameters> :
+        ISearchParameterBuilder               <TOrder, TPagination, TParameters>,
         ISearchParameterBuilderAfterBegin     <TOrder, TPagination, TParameters>,
         ISearchParameterBuilderAfterParameters<TOrder, TPagination, TParameters>,
         ISearchParameterBuilderAfterOrder     <TOrder, TPagination, TParameters>,
         ISearchParameterBuilderAfterPagination<TOrder, TPagination, TParameters>
     {
         protected SearchParameter<TOrder, TPagination, TParameters> Result { get; private set; }
+
+        protected SearchParameterBuilder() { }
+
+        public static ISearchParameterBuilder<TOrder, TPagination, TParameters> Create()
+        {
+            return new SearchParameterBuilder<TOrder, TPagination, TParameters>();
+        }
 
         public ISearchParameterBuilderAfterBegin<TOrder, TPagination, TParameters> Begin()
         {

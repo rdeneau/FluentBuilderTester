@@ -92,6 +92,7 @@
     <Compile Include="Common\StepChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\ISearchParameter.cs" />
+    <Compile Include="Search\ISearchParameterBuilder.cs" />
     <Compile Include="Search\ISearchParameterBuilderAfterBegin.cs" />
     <Compile Include="Search\ISearchParameterBuilderAfterOrder.cs" />
     <Compile Include="Search\ISearchParameterBuilderAfterParameters.cs" />
