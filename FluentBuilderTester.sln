@@ -5,6 +5,15 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentBuilderTester", "FluentBuilderTester\FluentBuilderTester.csproj", "{B5687E76-0A4D-4B10-AB92-718B9E65B9DB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81226A6E-6021-4DB9-B4BB-B97CA7EE8CB5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentBuilder.Model", "FluentBuilder.Model\FluentBuilder.Model.csproj", "{A6B94EE9-43E0-4B52-A577-F80BC6BDEB75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentBuilder.Tests", "FluentBuilder.Tests\FluentBuilder.Tests.csproj", "{150AFE60-1D26-4997-96A3-CDA76B7E86ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +24,14 @@ Global
 		{B5687E76-0A4D-4B10-AB92-718B9E65B9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5687E76-0A4D-4B10-AB92-718B9E65B9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5687E76-0A4D-4B10-AB92-718B9E65B9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6B94EE9-43E0-4B52-A577-F80BC6BDEB75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B94EE9-43E0-4B52-A577-F80BC6BDEB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B94EE9-43E0-4B52-A577-F80BC6BDEB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B94EE9-43E0-4B52-A577-F80BC6BDEB75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{150AFE60-1D26-4997-96A3-CDA76B7E86ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{150AFE60-1D26-4997-96A3-CDA76B7E86ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{150AFE60-1D26-4997-96A3-CDA76B7E86ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{150AFE60-1D26-4997-96A3-CDA76B7E86ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
