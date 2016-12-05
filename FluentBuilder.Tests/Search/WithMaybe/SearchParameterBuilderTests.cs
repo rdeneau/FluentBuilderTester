@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentBuilder.Model.Search;
+using FluentBuilder.Model.Search.WithMaybe;
 using NFluent;
 using Xunit;
 
-namespace FluentBuilder.Tests.Search
+namespace FluentBuilder.Tests.Search.WithMaybe
 {
     [Trait("UnitTests", "")]
-    public class SearchParameterWithMaybeBuilderTests
+    public class SearchParameterBuilderTests
     {
         #region Classes and Data
 
@@ -17,7 +18,7 @@ namespace FluentBuilder.Tests.Search
             public string Category { get; set; }
         }
 
-        private class TestedBuilder : SearchParameterWithMaybeBuilder<OrderParameter, FakeParameters>
+        private class TestedBuilder : SearchParameterBuilder<OrderParameter, FakeParameters>
         {
         }
 

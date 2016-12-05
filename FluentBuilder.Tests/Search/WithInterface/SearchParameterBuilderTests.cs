@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentBuilder.Model.Search;
+using FluentBuilder.Model.Search.WithInterface;
+using FluentBuilder.Tests.Extensions;
 using NFluent;
 using Xunit;
 
-namespace FluentBuilder.Tests.Search
+namespace FluentBuilder.Tests.Search.WithInterface
 {
     [Trait("UnitTests", "")]
     public class SearchParameterBuilderTests
     {
-        #region Classes and Data
+        #region Data
 
         public class FakeParameters
         {
@@ -20,12 +22,6 @@ namespace FluentBuilder.Tests.Search
         {
             return SearchParameterBuilder<OrderParameter, PaginationParameter, FakeParameters>.Create();
         }
-
-        public static readonly OrderParameter<string>[] Orders =
-        {
-            null,
-            OrderParameter.Create("Name", true)
-        };
 
         public static class MethodNames
         {
@@ -42,6 +38,7 @@ namespace FluentBuilder.Tests.Search
                 var builder2 = builder1.Begin();
                 var builder3 = builder2.WithParameters(null);
                 var builder4 = builder3.WithOrder(null);
+                builder4.Build();
 
                 Begin          = nameof(builder1.Begin);
                 Build          = nameof(builder2.Build);
@@ -53,6 +50,8 @@ namespace FluentBuilder.Tests.Search
 
             public static string[] AllBut(params string[] names)
             {
+                var nameSet = names.ToHashSet();
+
                 return new[]
                 {
                     Begin,
@@ -62,10 +61,16 @@ namespace FluentBuilder.Tests.Search
                     WithOrder,
                     WithPagination
                 }
-                .Where(name => !names.Contains(name))
+                .Where(name => !nameSet.Contains(name))
                 .ToArray();
             }
         }
+
+        public static readonly OrderParameter<string>[] Orders =
+        {
+            null,
+            OrderParameter.Create("Name", true)
+        };
 
         public static readonly PaginationParameter[] Paginations =
         {
@@ -95,24 +100,16 @@ namespace FluentBuilder.Tests.Search
 
         #endregion
 
-        #region Test Create
+        #region Facts
 
         [Fact]
         public void Create_Builder_Result_Can_Call_Begin_Only()
         {
-            // Arrange
-            var builder = CreateBuilder();
-
-            // Assert
             Check.That(this.HasAllMethodsInReturnedType(MethodNames.CreateBuilder, MethodNames.Begin))
                  .IsTrue();
             Check.That(this.HasAnyMethodsInReturnedType(MethodNames.CreateBuilder, MethodNames.AllBut(MethodNames.Begin)))
                  .IsFalse();
         }
-
-        #endregion
-
-        #region Test Begin
 
         [Fact]
         public void Begin_Builder_Result_Can_Call_Build_And_WithParameters_Only()
@@ -127,10 +124,6 @@ namespace FluentBuilder.Tests.Search
                  .IsFalse();
         }
 
-        #endregion
-
-        #region Test WithParameters
-
         [Fact]
         public void WithParameters_Builder_Result_Can_Call_Build_And_WithOrder_Only()
         {
@@ -139,7 +132,6 @@ namespace FluentBuilder.Tests.Search
 
             // Act
             var tmpBuilder = builder.Begin();
-            var buildr2 = tmpBuilder.WithParameters(null);
 
             // Assert
             Check.That(tmpBuilder.HasAllMethodsInReturnedType(MethodNames.WithParameters, MethodNames.Build, MethodNames.WithOrder))
@@ -164,10 +156,6 @@ namespace FluentBuilder.Tests.Search
                  .IsEqualTo(parameters);
         }
 
-        #endregion
-
-        #region Test WithOrder
-
         [Fact]
         public void WithOrder_Builder_Result_Can_Call_Build_And_WithPagination_Only()
         {
@@ -177,7 +165,6 @@ namespace FluentBuilder.Tests.Search
             // Act
             var tmpBuilder = builder.Begin()
                                     .WithParameters(null);
-            var buildr2 = tmpBuilder.WithOrder(null);
 
             // Assert
             Check.That(tmpBuilder.HasAllMethodsInReturnedType(MethodNames.WithOrder, MethodNames.Build, MethodNames.WithPagination))
@@ -205,10 +192,6 @@ namespace FluentBuilder.Tests.Search
                  .IsEqualTo(order);
         }
 
-        #endregion
-
-        #region Test WithPagination
-
         [Fact]
         public void WithPagination_Builder_Result_Can_Call_Build_Only()
         {
@@ -219,7 +202,6 @@ namespace FluentBuilder.Tests.Search
             var tmpBuilder = builder.Begin()
                                     .WithParameters(null)
                                     .WithOrder(null);
-            var buildr2 = tmpBuilder.WithPagination(null);
 
             // Assert
             Check.That(tmpBuilder.HasAllMethodsInReturnedType(MethodNames.WithPagination, MethodNames.Build))
@@ -251,39 +233,5 @@ namespace FluentBuilder.Tests.Search
         }
 
         #endregion
-    }
-
-    public static class SearchParameterBuilderTestsHelper
-    {
-        public static bool HasAllMethodsInReturnedType(this object source, string fn, params string[] methodNames)
-        {
-            return source.HasMethodsInReturnedType(fn, true, methodNames);
-        }
-
-        public static bool HasAnyMethodsInReturnedType(this object source, string fn, params string[] methodNames)
-        {
-            return source.HasMethodsInReturnedType(fn, false, methodNames);
-        }
-
-        private static bool HasMethodsInReturnedType(this object source, string fn, bool all, params string[] methodNames)
-        {
-            var returnType = source?.GetType()
-                                    .GetMethod(fn)
-                                   ?.ReturnType;
-            var result = all;
-            foreach (var methodName in methodNames)
-            {
-                var hasMethod = returnType.GetMethod(methodName) != null;
-                if (!hasMethod && all)
-                {
-                    return false;
-                }
-                if (hasMethod && !all)
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
     }
 }

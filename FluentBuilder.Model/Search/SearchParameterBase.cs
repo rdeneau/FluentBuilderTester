@@ -3,8 +3,7 @@
 namespace FluentBuilder.Model.Search
 {
     [DataContract]
-    public class SearchParameter<TOrder, TPagination, TParameters> :
-        ISearchParameterWithPagination<TOrder, TPagination, TParameters>
+    public abstract class SearchParameterBase<TOrder, TPagination, TParameters>
     {
         [DataMember]
         public TOrder Order { get; set; }

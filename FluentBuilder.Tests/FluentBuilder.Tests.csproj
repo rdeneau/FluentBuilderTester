@@ -64,9 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MaybeTests.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Search\SearchParameterBuilderTests.cs" />
-    <Compile Include="Search\SearchParameterWithMaybeBuilderTests.cs" />
+    <Compile Include="Search\WithInterface\SearchParameterBuilderTests.cs" />
+    <Compile Include="Search\WithMaybe\SearchParameterBuilderTests.cs" />
     <Compile Include="Common\StepCheckerTests.AssertCalledAfterShould.cs">
       <DependentUpon>StepCheckerTests.cs</DependentUpon>
     </Compile>

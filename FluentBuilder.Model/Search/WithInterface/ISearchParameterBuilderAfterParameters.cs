@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace FluentBuilder.Model.Search
+namespace FluentBuilder.Model.Search.WithInterface
 {
     public interface ISearchParameterBuilderAfterParameters<TOrder, TPagination, out TParameters>
     {

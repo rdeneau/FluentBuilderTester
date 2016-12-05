@@ -1,4 +1,4 @@
-﻿namespace FluentBuilder.Model.Search
+﻿namespace FluentBuilder.Model.Search.WithInterface
 {
     public interface ISearchParameterBuilderAfterPagination<out TOrder, out TPagination, out TParameters>
     {

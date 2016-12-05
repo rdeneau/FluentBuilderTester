@@ -2,26 +2,26 @@
 using FluentBuilder.Model.Common;
 using JetBrains.Annotations;
 
-namespace FluentBuilder.Model.Search
+namespace FluentBuilder.Model.Search.WithMaybe
 {
-    public class SearchParameterWithMaybeBuilder<TOrder, TParameters>
+    public class SearchParameterBuilder<TOrder, TParameters>
         where TOrder : class
         where TParameters : class
     {
-        protected Maybe<SearchParameterWithMaybe<TOrder, TParameters>> ResultWrapper { get; private set; }
+        protected Maybe<SearchParameter<TOrder, TParameters>> ResultWrapper { get; private set; }
 
-        protected bool HasResult                                       => ResultWrapper.HasValue;
-        protected bool HasNoResult                                     => ResultWrapper.HasNoValue;
-        protected SearchParameterWithMaybe<TOrder, TParameters> Result => ResultWrapper.Value;
+        protected bool HasResult                              => ResultWrapper.HasValue;
+        protected bool HasNoResult                            => ResultWrapper.HasNoValue;
+        protected SearchParameter<TOrder, TParameters> Result => ResultWrapper.Value;
 
-        public SearchParameterWithMaybeBuilder<TOrder, TParameters> Begin()
+        public SearchParameterBuilder<TOrder, TParameters> Begin()
         {
             _stepChecker.AssertCalledOnce(nameof(Begin), HasResult);
-            ResultWrapper = new SearchParameterWithMaybe<TOrder, TParameters>();
+            ResultWrapper = new SearchParameter<TOrder, TParameters>();
             return this;
         }
 
-        public SearchParameterWithMaybeBuilder<TOrder, TParameters> WithParameters([CanBeNull] TParameters parameters)
+        public SearchParameterBuilder<TOrder, TParameters> WithParameters([CanBeNull] TParameters parameters)
         {
             _stepChecker.AssertCalledAfter(nameof(WithParameters), HasNoResult);
             _stepChecker.AssertCalledOnce (nameof(WithParameters), Result.Parameters.HasValue);
@@ -29,7 +29,7 @@ namespace FluentBuilder.Model.Search
             return this;
         }
 
-        public SearchParameterWithMaybeBuilder<TOrder, TParameters> WithOrder([CanBeNull] TOrder order)
+        public SearchParameterBuilder<TOrder, TParameters> WithOrder([CanBeNull] TOrder order)
         {
             _stepChecker.AssertCalledAfter(nameof(WithOrder), Result.Parameters.HasNoValue);
             _stepChecker.AssertCalledOnce (nameof(WithOrder), Result.Order.HasValue);
@@ -37,7 +37,7 @@ namespace FluentBuilder.Model.Search
             return this;
         }
 
-        public SearchParameterWithMaybeBuilder<TOrder, TParameters> WithPagination([CanBeNull] PaginationParameter pagination)
+        public SearchParameterBuilder<TOrder, TParameters> WithPagination([CanBeNull] PaginationParameter pagination)
         {
             _stepChecker.AssertCalledAfter(nameof(WithPagination), Result.Order.HasNoValue);
             _stepChecker.AssertCalledOnce (nameof(WithPagination), Result.Pagination.HasValue);
@@ -45,7 +45,7 @@ namespace FluentBuilder.Model.Search
             return this;
         }
 
-        public SearchParameterWithMaybe<TOrder, TParameters> Build()
+        public SearchParameter<TOrder, TParameters> Build()
         {
             _stepChecker.AssertCalledAfter(nameof(Build), HasNoResult);
             return Result;

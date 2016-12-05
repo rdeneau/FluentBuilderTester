@@ -1,4 +1,4 @@
-﻿namespace FluentBuilder.Model.Search
+﻿namespace FluentBuilder.Model.Search.WithInterface
 {
     public interface ISearchParameterWithParameters<out TParameters> : ISearchParameter
     {
